@@ -22,6 +22,8 @@ public class DungeonMap {
         for (int i = 0; i < WIDTH*HEIGHT; i++) {
             mapUnits.add('-');
         }
+        this.getMapUnits().set((DungeonMap.SPAWN.x -1 ) + DungeonMap.SPAWN.y * DungeonMap.WIDTH, 'X'); // Marks player location on the map upon spawn
+
     }
     public void displayDungeonMap() {
         for(int i = 0; i < WIDTH*HEIGHT; i++) {

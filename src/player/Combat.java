@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Interactions {
+public class Combat {
 
     //This file gets clunky
 
     private final Player player;
     private Monster monsterInPlayerRoom;
 
-    public Interactions(Player player) {
+    public Combat(Player player) {
         this.player = player;
     }
 
@@ -69,30 +69,4 @@ public class Interactions {
            //grab player points and chuck points onto it here.
        }
     }
-
-    //Runs through the predefined rooms in dungeon class and sees if any are nearby the player coordinate (+/- 1 on each axis).
-    //The formulas could use some simplification and helper functions to make it less ugly
-    public void availableLocations(Dungeon dungeon, ArrayList<String> possibleLocations) {
-        if (dungeon.getDungeonLayout().containsKey(new Point( (int) player.location().getLocation().getX(),
-                (int) player.location().getLocation().getY() + 1 ))) {
-            possibleLocations.add(dungeon.getDungeonLayout().get(new Point(player.location().getLocation().x, player.location().getLocation().y + 1)) + " (North)");
-        }
-        if (dungeon.getDungeonLayout().containsKey(new Point( (int) player.location().getLocation().getX() + 1,
-                (int) player.location().getLocation().getY() ))) {
-            possibleLocations.add(dungeon.getDungeonLayout().get(new Point(player.location().getLocation().x + 1, player.location().getLocation().y)) + " (East)");
-        }
-
-        if (dungeon.getDungeonLayout().containsKey(new Point( (int) player.location().getLocation().getX(),
-                (int) player.location().getLocation().getY() -1 ))) {
-            possibleLocations.add(dungeon.getDungeonLayout().get(new Point(player.location().getLocation().x, player.location().getLocation().y -1)) + " (South)");
-        }
-
-        if (dungeon.getDungeonLayout().containsKey(new Point( (int) player.location().getLocation().getX() -1 ,
-                (int) player.location().getLocation().getY() ))) {
-            possibleLocations.add(dungeon.getDungeonLayout().get(new Point(player.location().getLocation().x -1, player.location().getLocation().y )) + " (West)");
-        }
-        System.out.println("Available Options: " + possibleLocations );
-        possibleLocations.clear();
-    }
-
 }

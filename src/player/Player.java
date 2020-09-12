@@ -8,7 +8,7 @@ public class Player {
     private final Inventory inventory = new Inventory();
     private final Skills skills = new Skills();
     private final Location location = new Location();
-    private final Interactions interactions = new Interactions(this);
+    private final Combat combat = new Combat(this);
     private final Input input = new Input();
     private final Movement movement = new Movement();
 
@@ -26,8 +26,8 @@ public class Player {
         return this.location;
     }
 
-    public Interactions interactions() {
-        return this.interactions;
+    public Combat combat() {
+        return this.combat;
     }
 
     public Input input() {

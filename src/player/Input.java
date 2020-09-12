@@ -25,4 +25,13 @@ public class Input {
             player.movement().moveWest(dungeon, dungeonMap, player);
             }
     }
+
+    public void requestInput(Dungeon dungeon, DungeonMap dungeonMap, Player player) {
+        dungeonMap.displayDungeonMap(); // Displays map to the user
+
+        System.out.println("Current Location: " + dungeon.getDungeonLayout().get(player.location().getLocation()) +
+                "\nWhat shall you do next?" + " N,E,S,W" );
+        player.location().availableLocations(dungeon, player); // List rooms within 1 coordinate of player
+        player.input().getInput(dungeon, dungeonMap, player); //Takes users input
+    }
 }
