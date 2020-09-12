@@ -2,6 +2,7 @@ import dungeon.Dungeon;
 import dungeon.DungeonMap;
 import dungeon.DungeonMonsters;
 import player.Player;
+import player.Input;
 
 import java.util.ArrayList;
 public class App {
@@ -31,14 +32,13 @@ public class App {
             if (!(player.interactions().withinMonsterRoom(dungeonMonsters))) { //check if player is in a monster's room so they cant escape
                 dungeonMap.displayDungeonMap(); // Displays map to the user
                 System.out.println("Current Location: " + dungeon.getDungeonLayout().get(player.location().getLocation()) +
-                    "\nWhat shall you do next?" + " N,E,S,W" );
+                        "\nWhat shall you do next?" + " N,E,S,W" );
                 player.interactions().availableLocations(dungeon, possibleLocations); // List rooms within 1 coordinate of player
-                player.interactions().playerMovement(dungeon, dungeonMap); // Looks at player's choice and determines whether or not the choice is valid and updates map based on choice
+                player.input().getInput(dungeon, dungeonMap, player);
             } else {
                 player.interactions().playerBattle();
             }
 
         }
-
     }
 }
