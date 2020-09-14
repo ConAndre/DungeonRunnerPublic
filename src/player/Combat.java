@@ -14,8 +14,8 @@ public class Combat {
 
     //This file gets clunky
 
-    private final Player player;
     private Monster monsterInPlayerRoom;
+    private final Player player;
 
     public Combat(Player player) {
         this.player = player;
@@ -62,8 +62,10 @@ public class Combat {
            monsterInPlayerRoom.monsterInflictDamage(monsterDamage, player);
        } else {
            notifyPlayer = true;
+//           monsterInPlayerRoom.dropLoot(player);
            System.out.println("You defeated the monster!\nPress enter to continue...");
            scannerBattle.nextLine();
+
            //probably add loot drop here? add loot to monsterInPlayerRoom object
            //easy way to add point system
            //grab player points and chuck points onto it here.

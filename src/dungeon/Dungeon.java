@@ -5,6 +5,11 @@ import java.util.HashMap;
 
 public class Dungeon {
 
+
+    public Dungeon() {
+        generateDungeonRooms();
+    }
+
     private final HashMap<Point, String> layout = new HashMap<>();
 
     public HashMap<Point, String> getDungeonLayout() {

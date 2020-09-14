@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 public class DungeonMonsters {
 
+
+    public DungeonMonsters() {
+        initDungeonMonsters();
+    }
+
     private final ArrayList<Object> monsterList = new ArrayList<>();
 
 

@@ -9,8 +9,14 @@ import java.util.Scanner;
 public class Movement {
 
 
-    public void moveNorth(Dungeon dungeon, DungeonMap dungeonMap, Player player) {
-        if (isAValidRoomNorth(dungeon, player)) {
+    private final Player player;
+
+    public Movement(Player player) {
+        this.player = player;
+    }
+
+    public void moveNorth(Dungeon dungeon, DungeonMap dungeonMap) {
+        if (isAValidRoomNorth(dungeon)) {
             dungeonMap.getMapUnits().set((player.location().getLocation().x -1 ) + (DungeonMap.HEIGHT - player.location().getLocation().y ) * DungeonMap.WIDTH, '0'); // Mark last location before we move
             player.location().getLocation().setLocation(player.location().getLocation().getX(), player.location().getLocation().getY() + 1); // Moves the player north or 1 point up
             dungeonMap.getMapUnits().set((player.location().getLocation().x -1 ) + (DungeonMap.HEIGHT - player.location().getLocation().y ) * DungeonMap.WIDTH, 'X'); // Mark new location
@@ -19,8 +25,8 @@ public class Movement {
         }
 
     }
-    public void moveEast(Dungeon dungeon, DungeonMap dungeonMap, Player player) {
-        if (isAValidRoomEast(dungeon, player)) {
+    public void moveEast(Dungeon dungeon, DungeonMap dungeonMap) {
+        if (isAValidRoomEast(dungeon)) {
             dungeonMap.getMapUnits().set((player.location().getLocation().x -1 ) + (DungeonMap.HEIGHT - player.location().getLocation().y ) * DungeonMap.WIDTH, '0');
             player.location().getLocation().setLocation(player.location().getLocation().getX() + 1, player.location().getLocation().getY());
             dungeonMap.getMapUnits().set((player.location().getLocation().x -1 ) + (DungeonMap.HEIGHT - player.location().getLocation().y) * DungeonMap.WIDTH, 'X');
@@ -29,8 +35,8 @@ public class Movement {
         }
 
     }
-    public void moveSouth(Dungeon dungeon, DungeonMap dungeonMap, Player player) {
-        if (isAValidRoomSouth(dungeon, player)) {
+    public void moveSouth(Dungeon dungeon, DungeonMap dungeonMap) {
+        if (isAValidRoomSouth(dungeon)) {
             dungeonMap.getMapUnits().set((player.location().getLocation().x -1 ) + (DungeonMap.HEIGHT - player.location().getLocation().y ) * DungeonMap.WIDTH, '0');
             player.location().getLocation().setLocation(player.location().getLocation().getX(), player.location().getLocation().getY() -1 );
             dungeonMap.getMapUnits().set((player.location().getLocation().x -1 ) + (DungeonMap.HEIGHT - player.location().getLocation().y) * DungeonMap.WIDTH, 'X');
@@ -39,8 +45,8 @@ public class Movement {
         }
 
     }
-    public void moveWest(Dungeon dungeon, DungeonMap dungeonMap, Player player) {
-        if (isAValidRoomWest(dungeon, player)) {
+    public void moveWest(Dungeon dungeon, DungeonMap dungeonMap) {
+        if (isAValidRoomWest(dungeon)) {
             dungeonMap.getMapUnits().set((player.location().getLocation().x -1 ) + (DungeonMap.HEIGHT - player.location().getLocation().y ) * DungeonMap.WIDTH, '0');
             player.location().getLocation().setLocation(player.location().getLocation().getX() -1, player.location().getLocation().getY() );
             dungeonMap.getMapUnits().set((player.location().getLocation().x -1 ) + (DungeonMap.HEIGHT - player.location().getLocation().y) * DungeonMap.WIDTH, 'X');
@@ -50,19 +56,19 @@ public class Movement {
 
     }
 
-    public boolean isAValidRoomNorth(Dungeon dungeon, Player player) {
+    public boolean isAValidRoomNorth(Dungeon dungeon) {
         return dungeon.getDungeonLayout().containsKey(new Point((int) player.location().getLocation().getX(), // Checks if the direction the player chose is a valid room in the hashmap
                 (int) player.location().getLocation().getY() + 1));
     }
-    public boolean isAValidRoomEast(Dungeon dungeon, Player player) {
+    public boolean isAValidRoomEast(Dungeon dungeon) {
         return dungeon.getDungeonLayout().containsKey(new Point((int) player.location().getLocation().getX() + 1,
                 (int) player.location().getLocation().getY()));
     }
-    public boolean isAValidRoomSouth(Dungeon dungeon, Player player) {
+    public boolean isAValidRoomSouth(Dungeon dungeon) {
         return dungeon.getDungeonLayout().containsKey(new Point((int) player.location().getLocation().getX(),
                 (int) player.location().getLocation().getY() - 1));
     }
-    public boolean isAValidRoomWest(Dungeon dungeon, Player player) {
+    public boolean isAValidRoomWest(Dungeon dungeon) {
         return dungeon.getDungeonLayout().containsKey(new Point((int) player.location().getLocation().getX() - 1, // Checks if the direction the player chose is a valid room in the hashmap
                 (int) player.location().getLocation().getY()));
     }

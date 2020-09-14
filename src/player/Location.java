@@ -8,13 +8,21 @@ import java.util.ArrayList;
 
 public class Location {
 
+
+
+    private final Player player;
+
+    public Location(Player player) {
+        this.player = player;
+    }
+
     private final Point location = DungeonMap.SPAWN;
 
     public Point getLocation() {
         return location;
     }
 
-    public void availableLocations(Dungeon dungeon, Player player) {
+    public void availableLocations(Dungeon dungeon) {
         ArrayList<String> possibleLocations = new ArrayList<>();
         if (dungeon.getDungeonLayout().containsKey(new Point( (int) player.location().getLocation().getX(),
                 (int) player.location().getLocation().getY() + 1 ))) {

@@ -1,5 +1,6 @@
 package player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,28 +8,25 @@ public class Inventory {
 
     //Unfinished
 
-    private Map<String, Integer> Inventory = new HashMap<>();
 
-    public Map<String, Integer> getInventory() {
+    private final Player player;
+
+    public Inventory(Player player) {
+        this.player = player;
+    }
+
+    private ArrayList<Object> Inventory = new ArrayList<>();
+
+    public ArrayList<Object> getInventory() {
         return Inventory;
     }
 
-    public boolean isInInventory(Map<String, Integer> playerInventory, String item) {
-        return playerInventory.containsKey((item));
+    public boolean isInInventory(Map<Object, Integer> playerInventory, Object item) {
+        return (playerInventory.containsKey((item)));
     }
-
-    public void wipeInventory() {
-        this.Inventory = new HashMap<>();
-    }
-
-
-    public void addItem(String item, int amount) {
-        if (isInInventory(this.Inventory, item)) {
-            this.Inventory.replace(item, this.Inventory.get(item) + amount);
-        }
-        else {
-            this.Inventory.put(item, amount);
-        }
-        System.out.println("You pick up " + amount + " " + item + "(s)" );
-    }
+//
+//    public void addItem(String item) {
+//        this.Inventory.put(item);
+//        System.out.println("You pick up " + amount + " " + item + "(s)" );
+//    }
 }

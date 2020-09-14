@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class DungeonMap {
 
 
+    public DungeonMap() {
+        initDungeonMap();
+    }
+
     //The map is 20x20 because that's the arbitrary number I chose, not for any other reason
     public static final int WIDTH = 20;
     public static final int HEIGHT = 20;

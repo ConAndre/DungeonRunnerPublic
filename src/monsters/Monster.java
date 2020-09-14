@@ -3,6 +3,8 @@ package monsters;
 import player.Player;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class Monster {
@@ -20,6 +22,8 @@ public class Monster {
     private final boolean isBoss = false;
 
     private Point location;
+
+    private HashMap<String, Integer> lootTable = new HashMap<>();
 
     public int rollDamage(int strength, double accuracy ) {
         int damage;
@@ -113,4 +117,17 @@ public class Monster {
     public void setName(String name) {
         this.name = name;
     }
+
+    public HashMap<String, Integer> getLootTable() {
+        return lootTable;
+    }
+
+//    public void dropLoot(Player player) {
+//        for (Map.Entry<String, Integer> lootTable : lootTable.entrySet()) {
+//            String item = lootTable.getKey();
+//            Integer amount = lootTable.getValue();
+//            player.inventory().addItem(item, amount);
+//
+//        }
+//    }
 }

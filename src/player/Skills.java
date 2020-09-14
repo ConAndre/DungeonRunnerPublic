@@ -3,6 +3,14 @@ package player;
 
 
 public class Skills {
+
+
+    private final Player player;
+
+    public Skills(Player player) {
+        this.player = player;
+    }
+
     //unfinished
     private int hitpoints = 100;
     private int strength = 20;
@@ -49,6 +57,21 @@ public class Skills {
 
     public void setAccuracy(int accuracy) {
         this.accuracy = accuracy;
+    }
+
+    public void setSkill(String skill, int amount) {
+        if (skill.equalsIgnoreCase("hitpoints")) {
+            setHitpoints(getHitpoints() + amount);
+        } else if (skill.equalsIgnoreCase("strength")) {
+            setHitpoints(getStrength() + amount);
+        } else if (skill.equalsIgnoreCase("agility")) {
+            setHitpoints(getAgility() + amount);
+        } else if (skill.equalsIgnoreCase("dodge")) {
+            setHitpoints(getDodge() + amount);
+        } else if (skill.equalsIgnoreCase("accuracy")) {
+            setHitpoints(getAccuracy() + amount);
+        }
+        System.out.println( skill + " increased by " + amount );
     }
 
     public void getTotal() {
