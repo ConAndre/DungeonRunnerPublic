@@ -1,10 +1,11 @@
-package Items;
+package items;
 
 import player.Player;
 
-public class Consumable_base {
+public class Item {
 
     private String name;
+    private final boolean isWeapon = false;
     private String type;
     private int change;
 
@@ -17,12 +18,15 @@ public class Consumable_base {
     }
 
     public void onUse(Player player) {
-        player.skills().setSkill(type, change);
-        player.inventory().getInventory().remove(this);
-
+        if (!(isWeapon) ) {
+            player.skills().setSkill(type, change);
+            player.inventory().getInventory().remove(this);
+        }
     }
-
     public void setName(String name) {
         this.name = name;
+    }
+    public String getName() {
+        return name;
     }
 }

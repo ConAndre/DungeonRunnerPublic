@@ -23,7 +23,6 @@ public class Movement {
         } else {
             invalidRoomMessage();
         }
-
     }
     public void moveEast(Dungeon dungeon, DungeonMap dungeonMap) {
         if (isAValidRoomEast(dungeon)) {
@@ -73,7 +72,7 @@ public class Movement {
                 (int) player.location().getLocation().getY()));
     }
 
-    Scanner delay = new Scanner(System.in);
+    final Scanner delay = new Scanner(System.in);
 
     public void invalidRoomMessage() {
                 System.out.println("There doesn't seem to be a path this way." +

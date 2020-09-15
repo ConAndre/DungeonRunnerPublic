@@ -1,10 +1,10 @@
 package monsters;
 
+import items.Item;
 import player.Player;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Monster {
@@ -12,18 +12,19 @@ public class Monster {
     final Random random = new Random();
 
 
-    private String name;
+    private String name = "null";
     private int hitpoints = 100;
     private int strength = 10;
     private int agility = 10;
     private int dodge = 10;
     private int accuracy = 10;
+    private int pointReward = 0;
 
-    private final boolean isBoss = false;
+    private boolean isBoss;
 
-    private Point location;
+    private Point location = new Point(0,0);
 
-    private HashMap<String, Integer> lootTable = new HashMap<>();
+    private final ArrayList<Item> lootTable = new ArrayList<>();
 
     public int rollDamage(int strength, double accuracy ) {
         int damage;
@@ -42,7 +43,7 @@ public class Monster {
     public void monsterInflictDamage(int damage, Player player) {
         int playerDodge = player.skills().getDodge();
         if (random.nextInt(100) <= playerDodge)  {
-            System.out.println("You manage to dodge an incoming attack. Health Remaining:" + player.skills().getHitpoints());
+            System.out.println("You manage to dodge an incoming attack. Health Remaining: " + player.skills().getHitpoints());
             return;
         }
         player.skills().setHitpoints(player.skills().getHitpoints() - damage);
@@ -59,8 +60,18 @@ public class Monster {
         System.out.println( getName() + " takes "+ damage + " damage. Health Remaining: " + getHitpoints());
     }
 
+    public void addLoot(Item item) {
+        lootTable.add(item);
+    }
 
-    // Hitpoints
+    public void dropLoot(Player player) {
+        for (Item item : this.getLootTable()) {
+            player.inventory().addItem(item);
+        }
+        player.skills().addPoints(pointReward);
+    }
+
+
     public int getHitpoints() {
         return hitpoints;
     }
@@ -68,7 +79,7 @@ public class Monster {
     public void setHitpoints(int hitpoints) {
         this.hitpoints = hitpoints;
     }
-    // Strength
+
     public int getStrength() {
         return strength;
     }
@@ -76,7 +87,7 @@ public class Monster {
     public void setStrength(int strength) {
         this.strength = strength;
     }
-    // Agility
+
     public int getAgility() {
         return agility;
     }
@@ -84,7 +95,7 @@ public class Monster {
     public void setAgility(int agility) {
         this.agility = agility;
     }
-    // Dodge
+
     public int getDodge() {
         return dodge;
     }
@@ -92,7 +103,6 @@ public class Monster {
     public void setDodge(int dodge) {
         this.dodge = dodge;
     }
-    // Accuracy
     public int getAccuracy() {
         return accuracy;
     }
@@ -118,16 +128,19 @@ public class Monster {
         this.name = name;
     }
 
-    public HashMap<String, Integer> getLootTable() {
+    public ArrayList<Item> getLootTable() {
         return lootTable;
     }
 
-//    public void dropLoot(Player player) {
-//        for (Map.Entry<String, Integer> lootTable : lootTable.entrySet()) {
-//            String item = lootTable.getKey();
-//            Integer amount = lootTable.getValue();
-//            player.inventory().addItem(item, amount);
-//
-//        }
-//    }
+    public void setPointReward(int pointReward) {
+        this.pointReward = pointReward;
+    }
+
+    public int getPointReward() {
+        return pointReward;
+    }
+
+    public void setBoss(boolean boss) {
+        this.isBoss = boss;
+    }
 }

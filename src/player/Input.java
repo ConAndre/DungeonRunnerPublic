@@ -3,7 +3,6 @@ package player;
 import dungeon.Dungeon;
 import dungeon.DungeonMap;
 
-import java.awt.*;
 import java.util.Scanner;
 
 public class Input {
@@ -30,7 +29,11 @@ public class Input {
         } else if (playerInput.equalsIgnoreCase("w")) {
             player.movement().moveWest(dungeon, dungeonMap);
         } else if (playerInput.equalsIgnoreCase("i")){
-            System.out.println(player.inventory().getInventory().toString());
+            player.inventory().openInventory();
+            playerInputScanner.nextLine();
+        } else if (playerInput.equalsIgnoreCase("stats")) {
+            player.skills().getTotal();
+            System.out.println("Press enter to continue... ");
             playerInputScanner.nextLine();
         }
     }
@@ -39,8 +42,10 @@ public class Input {
         dungeonMap.displayDungeonMap(); // Displays map to the user
 
         System.out.println("Current Location: " + dungeon.getDungeonLayout().get(player.location().getLocation()) +
-                "\nWhat shall you do next?" + " N,E,S,W" );
-        player.location().availableLocations(dungeon); // List rooms within 1 coordinate of player
-        player.input().getInput(dungeon, dungeonMap); //Takes users input
+                "\nWhat shall you do next?" + " \nN,E,S,W\n" +
+                "i\n" +
+                "stats" );
+        player.location().availableLocations(dungeon);
+        player.input().getInput(dungeon, dungeonMap);
     }
 }

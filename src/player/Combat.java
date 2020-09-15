@@ -1,12 +1,8 @@
 package player;
 
-import dungeon.Dungeon;
-import dungeon.DungeonMap;
 import dungeon.DungeonMonsters;
 import monsters.Monster;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -45,8 +41,6 @@ public class Combat {
     final Scanner scannerBattle = new Scanner(System.in);
     private boolean notifyPlayer = true;
 
-
-    //handles the fight between player and monster
     public void playerBattle() {
         if (playerAlive() && monsterInPlayerRoom.getHitpoints() > 0) {
             if (notifyPlayer) {
@@ -57,18 +51,15 @@ public class Combat {
             monsterInPlayerRoom.monsterTakeDamage(monsterInPlayerRoom.rollDamage(player.skills().getStrength(),player.skills().getAccuracy()));
             scannerBattle.nextLine();
         }
-       if (monsterInPlayerRoom.getHitpoints() > 0) { // make sure monster isnt dead so it can attack
+       if (monsterInPlayerRoom.getHitpoints() > 0) {
            int monsterDamage = monsterInPlayerRoom.rollDamage(monsterInPlayerRoom.getStrength(), monsterInPlayerRoom.getAccuracy());
            monsterInPlayerRoom.monsterInflictDamage(monsterDamage, player);
        } else {
            notifyPlayer = true;
-//           monsterInPlayerRoom.dropLoot(player);
-           System.out.println("You defeated the monster!\nPress enter to continue...");
+           System.out.println("You defeated the monster!");
+           monsterInPlayerRoom.dropLoot(player);
+           System.out.println("Press enter to continue...");
            scannerBattle.nextLine();
-
-           //probably add loot drop here? add loot to monsterInPlayerRoom object
-           //easy way to add point system
-           //grab player points and chuck points onto it here.
        }
     }
 }

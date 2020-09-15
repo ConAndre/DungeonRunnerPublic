@@ -19,6 +19,10 @@ public class App {
             } else {
                 player.combat().playerBattle();
             }
+            if (player.skills().getPoints() > 100) {
+                System.out.println("Congratulations, you win!");
+                return;
+            }
 
         }
     }

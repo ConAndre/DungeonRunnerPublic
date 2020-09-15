@@ -1,6 +1,6 @@
 package dungeon;
 
-import monsters.Monster_Cyclops;
+import monsters.*;
 
 import java.util.ArrayList;
 
@@ -16,6 +16,11 @@ public class DungeonMonsters {
 
     public void initDungeonMonsters() {
         monsterList.add(new Monster_Cyclops());
+        monsterList.add(new Monster_Rodent());
+        monsterList.add(new Monster_Darkshadow());
+        monsterList.add(new Monster_Nightmare());
+        monsterList.add(new Monster_Werewolf());
+        monsterList.add(new Monster_Lich());
 
 
     }

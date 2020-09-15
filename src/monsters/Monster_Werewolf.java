@@ -5,16 +5,15 @@ import items.StrengthPotion;
 
 import java.awt.*;
 
-public class Monster_Cyclops extends Monster {
-
-    public Monster_Cyclops() {
-        setName("Cyclops");
-        setHitpoints(80);
-        setLocation(new Point(10,11));
+public class Monster_Werewolf extends Monster{
+    public Monster_Werewolf() {
+        setName("Werewolf");
+        setHitpoints(100);
+        setLocation(new Point(18,12));
         addLoot(new HealthPotion());
         addLoot(new HealthPotion());
         addLoot(new StrengthPotion());
-        setPointReward(10);
+        setPointReward(20);
     }
 
 
